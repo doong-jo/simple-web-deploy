@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": true
+    },
+
+    "files": [
+        "src/baseball.ts",
+    ],
+
+    "include": [
+        "src/**/*"
+    ],
+
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
