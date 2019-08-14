@@ -26,4 +26,4 @@ Input your server host > "127.0.0.1"
 Input your server path > "~/"
 ```
 
-
+![screenshot](https://github.com/doong-jo/web-deploy/blob/master/screenshot.png?raw=true)
