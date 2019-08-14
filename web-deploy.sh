@@ -3,7 +3,7 @@
 echo "-----START DEPLOY-----"
 
 # root_path 입력
-read -p "Give me your project root path (current path : "./") > " root_path
+read -p "Give me your project path (current path : "./") > " root_path
 
 # .gitignore를 반영할건지 입력 (없다면 Enter, 모두 전송)
 read -p "May I reflect your \".gitignore\" file? (yes/no) > " is_ignored
@@ -14,19 +14,18 @@ read -p "Input your server user name > " server_user_name
 read -p "Input your server host > " server_host
 read -p "Input your server path > " server_path
 
-START_PATH=$(pwd)
-
 today=$(date +%Y%m%d)
-ZIP_DIR=$root_path/../deploy_$today
-mkdir $ZIP_DIR
+
+START_PATH=$(pwd)
+ZIP_NAME=deploy_$today
+ZIP_DIR=$root_path/../$ZIP_NAME
 
 function copy_all() {
     rsync -rq $root_path/. $ZIP_DIR
     rsync -rq $root_path/* $ZIP_DIR
 }
 
-# find all file and directory in root_path then exclude .gitignore
-# use "https://unix.stackexchange.com/a/358280", "https://git-scm.com/docs/git-check-ignore"
+# reference : "https://unix.stackexchange.com/a/358280"
 function copy_reflect_ignore() {
     copy_all
 
@@ -49,6 +48,8 @@ function copy_reflect_ignore() {
     cd $START_PATH
 }
 
+mkdir $ZIP_DIR
+
 if [ "$is_ignored" = "yes" ]; then
     copy_reflect_ignore
 else
@@ -56,7 +57,7 @@ else
 fi
 
 cd $root_path/../
-zip $ZIP_DIR.zip -qr ./deploy_$today
+zip $ZIP_DIR.zip -qr ./$ZIP_NAME
 
 scp -P $server_port -r $ZIP_DIR.zip "$server_user_name@$server_host:$server_path"
 
