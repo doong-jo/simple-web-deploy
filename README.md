@@ -1,5 +1,7 @@
 # web-deploy
 
+#### [시작 전 Docker와 Shell 훑어보기](https://doong-jo.github.io/devops/2019/07/24/Docker-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EA%B7%B8%EB%A6%AC%EA%B3%A0-Shell%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-%EC%9E%90%EB%8F%99%ED%99%94-%ED%9D%89%EB%82%B4%EB%82%B4%EA%B8%B0/)
+
 ## Intro
 웹 서비스 배포 시 이용할 수 있는 **배포 쉘 스크립트** 입니다.
 
