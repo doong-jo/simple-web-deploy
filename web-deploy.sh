@@ -1,7 +1,12 @@
 #!/bin/bash
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+LP='\033[1;35m'
 
+echo "${RED}"
 echo "-----START DEPLOY-----"
 
+echo "${LP}"
 # root_path 입력
 read -p "Give me your project path (current path : "./") > " root_path
 
@@ -19,6 +24,8 @@ today=$(date +%Y%m%d)
 START_PATH=$(pwd)
 ZIP_NAME=deploy_$today
 ZIP_DIR=$root_path/../$ZIP_NAME
+
+
 
 function copy_all() {
     rsync -rq $root_path/. $ZIP_DIR
@@ -66,4 +73,5 @@ rm $ZIP_DIR.zip
 
 cd $START_PATH
 
+echo "${GREEN}"
 echo "-----FINISH DEPLOY-----"
