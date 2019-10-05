@@ -1,18 +1,18 @@
 # web-deploy
 
 ## Intro
-웹 서비스 배포 시 참고하거나 사용할 수 있습니다. 🙆‍♂️
+You can refer to or use it when you deploy web services. 🙆‍♂️
 
 ## Feature 1 - Deploy with Docker
-### Docker를 통해 로컬에서 웹서버 배포해보기
+### Depoly your web server in local
 
-#### 1. [Docker 설치](https://docs.docker.com/install/)하기
+#### 1. [Install Docker](https://docs.docker.com/install/)
 
-#### 2. Dockerfile 만들기
+#### 2. Write Dockerfile
 
 ```bash
-# 'Dockerfile' 생성 (확장자 없음)
-# docker pull ubuntu 명령 후
+# make 'Dockerfile' (no extension)
+# after 'docker pull ubuntu'
 FROM ubuntu
 
 LABEL maintainer="Sungdong Jo <josungdong@naver.com>"
@@ -26,11 +26,9 @@ RUN apt-get install -y nodejs && apt-get install -y build-essential
 RUN apt-get install -y redis-server
 
 RUN mkdir -p /app
-# WORKDIR 로 설정
+# SET WORKDIR
 WORKDIR /app
-# /app 에 복사
 ADD . /app
-# npm install 을 실행
 RUN npm install
 
 ENV NODE_ENV production
@@ -40,8 +38,8 @@ EXPOSE 6379 80
 CMD ["npm", "start"]
 ```
 
-#### 3. 웹서버 배포
--   'Dockerfile'과 같은 경로에서 아래의 명령을 실행
+#### 3. Deploy youer web server
+-  same path with 'Dockerfile'
 ```bash
 # install
 docker build -t membership/web-app .
@@ -54,19 +52,18 @@ docker ps
 docker logs <container id>
 ```
 
-**이후 [localhost:49160](localhost:49160) 으로 접속할 수 있다.**
+**You can connect to [localhost:49160](localhost:49160)**
 
 ## Feature 2 - Basic Shell Script
 
-- .gitignore 내용을 반영하여 배포 가능
-- 서버 정보를 입력받아 전송 가능
-- .gitignore의 내용을 반영하여 배포 서버에 전송하고 싶다면 프로젝트 경로에 반드시 **".gitignore"** 파일이 존재해야 하며 "May I reflect your ".gitignore" file?" 프롬프트에서 **"yes"를 입력**합니다.
+- reflect with .gitignore
+- include your server host
 
-#### 예시
+#### example
 View [web-deploy.sh](https://github.com/doong-jo/web-deploy/blob/master/use-shell/web-deploy.sh)
 
 ```bash
-# 실행
+# execute script
 sh web-deploy.sh
 ```
 
