@@ -63,6 +63,8 @@ docker logs <container id>
 - .gitignore의 내용을 반영하여 배포 서버에 전송하고 싶다면 프로젝트 경로에 반드시 **".gitignore"** 파일이 존재해야 하며 "May I reflect your ".gitignore" file?" 프롬프트에서 **"yes"를 입력**합니다.
 
 #### 예시
+View [web-deploy.sh](https://github.com/doong-jo/web-deploy/blob/master/use-shell/web-deploy.sh)
+
 ```bash
 # 실행
 sh web-deploy.sh
