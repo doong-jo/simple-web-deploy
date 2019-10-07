@@ -38,7 +38,7 @@ EXPOSE 6379 80
 CMD ["npm", "start"]
 ```
 
-#### 3. Deploy youer web server
+#### 3. Deploy your web server
 -  same path with 'Dockerfile'
 ```bash
 # install
@@ -54,7 +54,58 @@ docker logs <container id>
 
 **You can connect to [localhost:49160](localhost:49160)**
 
-## Feature 2 - Basic Shell Script
+## Feature 2 - Deploy in server
+
+### Deploy automatically
+
+1. using cron
+```bash
+# ubuntu
+
+apt-get update & apt-get upgrade
+apt-get install cron
+sudo apt-get install postfix
+
+# register schedule (* * * * * : every miniute)
+cat <(crontab -l) <(echo "* * * * * <your_project_path>/auto-deploy.sh > <log_path>/cron.log") | crontab -
+```
+
+1. write deploy script (auto_deploy.sh)
+```bash
+# auto_deploy.mock.sh
+# git usernme, password
+username="your_user_name"
+password="your_password"
+branch="your_branch_name"
+
+url="https://$username:$password@github.com/doong-jo/membership-todo.git"
+
+cd $project_dir
+git remote set-url origin $url
+git fetch
+
+find_origin="git rev-parse origin/$branch"
+origin_hash=$($find_origin)
+
+find_local=$(git rev-parse $branch)
+local_hash=$find_local
+
+if [ "$origin_hash" == "$local_hash" ]; then
+        exit
+fi
+
+git pull $url
+
+sudo npm install
+sudo npm start
+```
+
+3. You must allow execution
+```bash
+chmod +x auto_deploy.sh
+```
+
+## Feature 3 - Basic Shell Script
 
 - reflect with .gitignore
 - include your server host
