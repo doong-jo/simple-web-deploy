@@ -58,7 +58,7 @@ docker logs <container id>
 
 ### Deploy automatically
 
-1. using cron
+#### 1. Using cron
 ```bash
 # ubuntu
 
@@ -70,7 +70,7 @@ sudo apt-get install postfix
 cat <(crontab -l) <(echo "* * * * * <your_project_path>/auto-deploy.sh > <log_path>/cron.log") | crontab -
 ```
 
-1. write deploy script (auto_deploy.sh)
+#### 2. Write deploy script (auto_deploy.sh)
 ```bash
 # auto_deploy.mock.sh
 # git usernme, password
@@ -100,7 +100,7 @@ sudo npm install
 sudo npm start
 ```
 
-3. You must allow execution
+#### 3. You must allow execution
 ```bash
 chmod +x auto_deploy.sh
 ```
