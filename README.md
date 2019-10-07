@@ -71,6 +71,10 @@ cat <(crontab -l) <(echo "* * * * * <your_project_path>/auto-deploy.sh > <log_pa
 ```
 
 #### 2. Write deploy script (auto_deploy.sh)
+
+#### example
+View [auto_deploy.sh](https://github.com/doong-jo/web-deploy/blob/master/use-server/auto_deploy.sh)
+
 ```bash
 # auto_deploy.mock.sh
 # git usernme, password
