@@ -1,4 +1,4 @@
-# web-deploy
+# simple-web-deploy
 
 ## Intro
 You can refer to or use it when you deploy web services. 🙆‍♂️
